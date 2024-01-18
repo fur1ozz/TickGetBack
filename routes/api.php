@@ -20,6 +20,9 @@ Route::get('/events', [EventController::class, 'index']);
 Route::get('/events/{id}', [EventController::class, 'show']);
 Route::get('/tickets/{id}', [TicketController::class, 'show']);
 
+Route::post('/events/create', [EventController::class, 'store']);
+
+
 
 
 
