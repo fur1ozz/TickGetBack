@@ -47,10 +47,14 @@ class PurchaseHistoryController extends Controller
             'dataAdd' => 'ok'
         ], 201);
     }
-    public function index()
+    public function index(Request $request)
     {
-        $purchaseHistory = PurchaseHistory::all();
+        $request->validate([
+            'user_id' => 'required|integer',
+        ]);
 
-        return response()->json(['purchase_history' => $purchaseHistory]);
+        $userPurchaseHistory = PurchaseHistory::where('user_id', $request->input('user_id'))->get();
+
+        return response()->json(['purchase_history' => $userPurchaseHistory]);
     }
 }

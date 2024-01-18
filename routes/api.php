@@ -24,7 +24,7 @@ Route::get('/tickets/{id}', [TicketController::class, 'show']);
 Route::post('/events/create', [EventController::class, 'store']);
 
 Route::post('/purchase-history/create', [PurchaseHistoryController::class, 'store']);
-Route::get('/purchase-history', [PurchaseHistoryController::class, 'index']);
+Route::post('/purchase-history', [PurchaseHistoryController::class, 'index']);
 
 
 
