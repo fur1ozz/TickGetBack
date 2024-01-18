@@ -6,6 +6,7 @@ use App\Http\Controllers\UserTController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\TicketController;
+use App\Http\Controllers\PurchaseHistoryController;
 
 
 
@@ -21,6 +22,10 @@ Route::get('/events/{id}', [EventController::class, 'show']);
 Route::get('/tickets/{id}', [TicketController::class, 'show']);
 
 Route::post('/events/create', [EventController::class, 'store']);
+
+Route::post('/purchase-history/create', [PurchaseHistoryController::class, 'store']);
+Route::get('/purchase-history', [PurchaseHistoryController::class, 'index']);
+
 
 
 
