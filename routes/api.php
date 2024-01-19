@@ -16,6 +16,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('/register', [UserTController::class, 'register']);
 Route::post('/login', [LoginController::class, 'login']);
+Route::post('/auth', [UserTController::class, 'getUserByToken']);
 
 Route::get('/events', [EventController::class, 'index']);
 Route::get('/events/{id}', [EventController::class, 'show']);

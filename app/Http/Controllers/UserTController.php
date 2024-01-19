@@ -34,4 +34,18 @@ class UserTController extends Controller
             throw $e;
         }
     }
+    public function getUserByToken(Request $request)
+    {
+        $request->validate([
+            'token' => 'required|string',
+        ]);
+
+        $user = UserT::where('token', $request->token)->first();
+
+        if (!$user) {
+            return response()->json(['error' => 'Invalid token'], 401);
+        }
+
+        return response()->json(['user' => $user]);
+    }
 }
