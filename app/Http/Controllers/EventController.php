@@ -106,7 +106,7 @@ class EventController extends Controller
         // Call the function to create event with tickets
         $event = $this->createEventWithTickets($eventData, $ticketData);
 
-        return response()->json(['eventAdd' => "ok"], 201);
+        return response()->json(['eventAdd' => "ok", 'message' => 'data added successfully'], 201);
     }
 
     private function createEventWithTickets($eventData, $ticketData)

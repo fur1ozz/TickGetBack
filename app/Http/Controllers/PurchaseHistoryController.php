@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\PurchaseHistory;
 use App\Models\Ticket;
+use App\Models\Event;
 use Illuminate\Http\Request;
 
 class PurchaseHistoryController extends Controller
@@ -53,8 +54,18 @@ class PurchaseHistoryController extends Controller
             'user_id' => 'required|integer',
         ]);
 
+        // Get purchase history for the user
         $userPurchaseHistory = PurchaseHistory::where('user_id', $request->input('user_id'))->get();
 
-        return response()->json(['purchase_history' => $userPurchaseHistory]);
+        // Fetch event data for each purchase history entry
+        $purchaseHistoryWithEvents = $userPurchaseHistory->map(function ($purchase) {
+            $event = Event::find($purchase->event_id);
+            return [
+                'purchase_history' => $purchase,
+                'event' => $event,
+            ];
+        });
+
+        return response()->json(['purchase_history_with_events' => $purchaseHistoryWithEvents]);
     }
 }
